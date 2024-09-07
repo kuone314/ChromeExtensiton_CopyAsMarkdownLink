@@ -11,21 +11,16 @@ chrome.runtime.onInstalled.addListener(() => {
     id: "sampleContextMenu",
     title: "MarkDownリンクとしてコピー",
     contexts: ["selection"],
-    // "onclick": copytext()
   });
 });
 
 // コンテキストメニューがクリックされたときの処理
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "sampleContextMenu") {
-    console.log("Context menu clicked!");
     // ここにクリック時の動作を追加
-    alert("tst")
+    console.log("Context menu clicked ああああ!");
 
   }
 });
 
-function copytext(): ((info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) => void) | undefined {
-  alert("tst")
-  return undefined;
-}
+
