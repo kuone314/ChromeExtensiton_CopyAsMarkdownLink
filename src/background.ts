@@ -9,7 +9,7 @@ polling();
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "sampleContextMenu",
-    title: "MarkDown",
+    title: "MarkDownリンクとしてコピー",
     contexts: ["selection"],
     // "onclick": copytext()
   });
