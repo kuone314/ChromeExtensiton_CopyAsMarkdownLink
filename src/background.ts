@@ -17,9 +17,9 @@ chrome.runtime.onInstalled.addListener(() => {
 // コンテキストメニューがクリックされたときの処理
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "sampleContextMenu") {
-    // ここにクリック時の動作を追加
-    console.log("Context menu clicked ああああ!");
-
+    const url = info.frameUrl ?? info.pageUrl;
+    const txt = "[" + info.selectionText + "](" + url + ")";
+    console.log(txt);
   }
 });
 
