@@ -20,7 +20,25 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     const url = info.frameUrl ?? info.pageUrl;
     const txt = "[" + info.selectionText + "](" + url + ")";
     console.log(txt);
+
+    saveToClipboard(txt);
   }
 });
 
+
+function saveToClipboard(str: string) {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.scripting.executeScript({
+      target: { tabId: tabs[0].id ?? 0 },
+      func: (textToCopy: string) => {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          console.log("Text copied to clipboard");
+        }).catch(err => {
+          console.error("Failed to copy text: ", err);
+        });
+      },
+      args: [str]  // 関数に渡す引数
+    });
+  });
+}
 
